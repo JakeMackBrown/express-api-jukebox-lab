@@ -3,6 +3,9 @@ dotenv.config();
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const cors = require('cors');
+
+const tracksRouter = require('./controllers/tracks.js');
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -12,7 +15,8 @@ mongoose.connection.on('connected', () => {
 
 app.use(express.json());
 
-// Routes go here
+
+app.use('/tracks', tracksRouter);
 
 app.listen(3000, () => {
   console.log('The express app is ready!');
