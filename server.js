@@ -14,8 +14,9 @@ mongoose.connection.on('connected', () => {
 });
 
 app.use(express.json());
+app.use(cors({ origin: 'http://localhost:5173' }));
 
-
+// Routes go here
 app.use('/tracks', tracksRouter);
 
 app.listen(3000, () => {
